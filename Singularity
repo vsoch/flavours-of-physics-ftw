@@ -36,8 +36,8 @@ export CONTAINERSFTW_WORK
      mkdir -p $SINGULARITY_ROOTFS/code/analysis
      mkdir -p $SINGULARITY_ROOTFS/code/tests
 
-     cp -R analysis/* /code/analysis
-     cp -R data/input/* /data/input
+     cp -R analysis/* $SINGULARITY_ROOTFS/code/analysis
+     cp -R data/input/* $SINGULARITY_ROOTFS/data/input
 
      /bin/bash functions/download_data.sh
 
