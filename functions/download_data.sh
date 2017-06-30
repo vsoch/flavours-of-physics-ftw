@@ -8,6 +8,6 @@ do
    if [ ! -e data/input/$file ]
 then
    wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/$file.zip -P data/input/
-   unzip data/input/$file.zip
+   unzip data/input/$file.zip -d data/input/
 fi
 done
