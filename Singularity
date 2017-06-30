@@ -2,11 +2,7 @@ Bootstrap: docker
 From: ubuntu:16.04
 
 %setup
-
 /bin/bash functions/download_data.sh
-
-done
-
 
 %files
 -R analysis/* /code/analysis
