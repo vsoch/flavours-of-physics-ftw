@@ -11,7 +11,8 @@ This is a competition orginally [hosted on Kaggle](https://www.kaggle.com/c/flav
 4. **Submit**: A submission to the competition means submitting a PR (pull request)
 
 ### Goals
-Evaluation for this competition is based on AUC (area under the curve), defined as area under the curve, which broadly gets at the ratio of false positives to false negatives for your model.  In addition to this criteria, the [evaluation](evaluation.py) file includes multiple checks that physicists do to make sure that results are unbiased.
+Evaluation for this competition is based on AUC (area under the curve), defined as area under the curve, which broadly gets at the ratio of false positives to false negatives for your model.  In addition to this criteria, the [metrics](metrics.py) file includes multiple checks that physicists do to make sure that results are unbiased.
+
 
 ### Build
 When you are ready to start your submission, you should fork the repo to your branch, and then clone the fork. For example, if my username on Github was `vsoch`, I would fork and then do:
@@ -24,9 +25,30 @@ cd flavours-of-physics-ftw
 Then you can build your image. You will need one dependency, that [Singularity is installed](https://singularityware.github.io). Building comes down to creating an image and then using `bootstrap` to build from the container recipe, [Singularity](Singularity).
 
 ```
-singularity create --size 3000 container.ftw 
+singularity create --size 8000 container.ftw 
 sudo singularity bootstrap container.ftw Singularity
 ```
+
+### Work in your Container
+To shell into your container, you will want to mount the analysis folder, and the external data. You can do that like this:
+
+```
+singularity shell -B data/input:/data/input -B analysis:/code container.ftw
+```
+
+When you shell into your container, it probably will look the same, but if you do `ls /` you will see a file called `singularity` and root folders `/data` and `/code` that aren't on your host. If you look inside, you will see the data and 
+analysis scripts mounted!
+
+```
+ls /code
+README.md  helpers  main.py  metrics.py  results  tests
+```
+
+Try creating a file on the host, and you will see it change in the container, or vice versa. Thus, your general workflow will be the following:
+
+ - run things from within the container, using the python or ipython located at `/opt/conda/bin`
+ - edit code in your editor of choice on your host machine
+
 
 ### Code
 

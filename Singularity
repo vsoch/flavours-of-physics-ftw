@@ -33,11 +33,7 @@ export CONTAINERSFTW_WORK
      mkdir -p $SINGULARITY_ROOTFS/code/results/pub
 
      # Working code directories
-     mkdir -p $SINGULARITY_ROOTFS/code/analysis
-     mkdir -p $SINGULARITY_ROOTFS/code/tests
-
-     cp -R analysis/* $SINGULARITY_ROOTFS/code/analysis
-     cp -R data/input/* $SINGULARITY_ROOTFS/data/input
+     mkdir -p $SINGULARITY_ROOTFS/code
 
      /bin/bash functions/download_data.sh
 
