@@ -2,6 +2,12 @@ Bootstrap: docker
 From: ubuntu:16.04
 
 %setup
+wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/check_agreement.csv.zip -P data/input/
+wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/check_correlation.csv.zip -P data/input/
+wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/sample_submission.csv.zip -P data/input/
+wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/test.csv.zip -P data/input/
+wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/training.csv.zip -P data/input/
+
 unzip data/input/check_agreement.csv.zip
 unzip data/input/check_correlation.csv.zip
 unzip data/input/sample_submission.csv.zip
@@ -10,7 +16,6 @@ unzip data/input/training.csv.zip
 
 %files
 -R analysis/* /code/analysis
--R functions/* /code/functions
 -R data/input/* /data/input
 
 %labels
