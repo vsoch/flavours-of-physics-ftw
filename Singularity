@@ -1,14 +1,16 @@
-Bootstrap: docker
-From: ubuntu:16.04
+BootStrap: docker
+From: continuumio/anaconda3
 
-%files
--R analysis/* /code/analysis
--R data/input/* /data/input
+%runscript
+
+     # This will generate the scientific result!
+     /opt/conda/bin/python /code/analysis/main.py
+
 
 %labels
 CONTAINERSFTW_TEMPLATE ubuntu16.04-python2
 CONTAINERSFTW_COMPETITION_HOST containersftw
-CONTAINERSFTW_COMPETITION_NAME 
+CONTAINERSFTW_COMPETITION_NAME ""
 
 %environment
 CONTAINERSFTW_DATA=/data/input
@@ -17,12 +19,6 @@ CONTAINERSFTW_WORK=/code/analysis
 export CONTAINERSFTW_DATA
 export CONTAINERSFTW_RESULT
 export CONTAINERSFTW_WORK
-
-%runscript
-
-     # This will generate the scientific result!
-     /usr/bin/python /code/analysis/main.py
-
 
 %setup
 
@@ -40,16 +36,16 @@ export CONTAINERSFTW_WORK
      mkdir -p $SINGULARITY_ROOTFS/code/analysis
      mkdir -p $SINGULARITY_ROOTFS/code/tests
 
+     cp -R analysis/* /code/analysis
+     cp -R data/input/* /data/input
+
      /bin/bash functions/download_data.sh
 
-%post
-     
-     # Download evaluation functions
 
-     apt-get update && apt-get install -y python git vim nginx wget
-     wget https://bootstrap.pypa.io/get-pip.py
-     python get-pip.py && rm get-pip.py
-     pip install numpy scipy pandas scikit-learn ipython
+%post
+
+     apt-get update && apt-get install -y git vim nginx
+     /opt/conda/bin/conda install -y numpy scikit-learn pandas 
      
      #########################################################
      # Install additional software / libraries here
