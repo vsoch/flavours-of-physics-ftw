@@ -20,7 +20,7 @@ CONTAINERSFTW_COMPETITION_NAME
 
 %environment
 CONTAINERSFTW_DATA=/data/input
-CONTAINERSFTW_RESULT=/result/analysis
+CONTAINERSFTW_RESULT=/code/analysis/results/submission
 CONTAINERSFTW_WORK=/code/analysis
 export CONTAINERSFTW_DATA
 export CONTAINERSFTW_RESULT
@@ -28,7 +28,7 @@ export CONTAINERSFTW_WORK
 
 %runscript
 
-     # This will print the scientific result!
+     # This will generate the scientific result!
      /usr/bin/python /code/analysis/main.py
 
 %post

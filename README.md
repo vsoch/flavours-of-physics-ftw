@@ -30,7 +30,7 @@ sudo singularity bootstrap container.ftw Singularity
 
 ### Code
 
-3. Your data files are located at `/data` and the main script that should run to produce your data in `/result/analysis` (for testing input) should be located at `/code/main.py` in the container.
+3. Your data files are located at `/data` and the main script that should run to produce your data in a subfolder of `/code/analysis/results` (for testing input) should be located at `/code/main.py` in the container.
 
 If you want to ever find data or results locations, these have been provided for you via environment variables:
 
@@ -55,6 +55,6 @@ If you add dependencies (another python module, additional data that conforms to
 
 ## FAQ
 
-1. **Do I have to use Python?**: Of course not! The base template image given to use is based on a choice by the creator (for example, lots of people use `scikit-learn` in python for machine learning). At the end of the day, the evaluation is done over the text file in `/result/analysis` and is ambivalent to how it is generated. Your submission (the container image) must simply run to generate it, and you are good.
+1. **Do I have to use Python?**: Of course not! The base template image given to use is based on a choice by the creator (for example, lots of people use `scikit-learn` in python for machine learning). At the end of the day, the evaluation is done over the text file in `/analysis/results/submission` and is ambivalent to how it is generated. Your submission (the container image) must simply run to generate it, and you are good.
 
-2. **How are files organized?** The complete mapping from 
+For now, for additional FAQ please see our [documentation](https://containers-ftw.github.io)

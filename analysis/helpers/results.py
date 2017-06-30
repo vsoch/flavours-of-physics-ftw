@@ -53,8 +53,12 @@ def list_results():
 
     bot.info("Submission must include:")
 
+
+    if result_base is None:
+        result_base = RESULTBASE
+
     # TODO: this should also be generated from a json that is derived automatically
-    results = {'model':'/result/analysis/baseline.csv'}
+    results = {'submission':'%s/submission.csv' %result_base}
 
     for title,path in results.items():
         bot.debug("%s : %s" %(title,path))
@@ -68,10 +72,7 @@ def get_resultfile(name=None,result_base=None):
     '''get_resultfile returns the file for the result, or None if 
     not defined
     '''
-    results = list_results()
-
-    if result_base is None:
-        result_base = RESULTBASE
+    results = list_results(result_base)
 
     if name is not None:
 
