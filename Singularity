@@ -2,17 +2,20 @@ Bootstrap: docker
 From: ubuntu:16.04
 
 %setup
-wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/check_agreement.csv.zip -P data/input/
-wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/check_correlation.csv.zip -P data/input/
-wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/sample_submission.csv.zip -P data/input/
-wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/test.csv.zip -P data/input/
-wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/training.csv.zip -P data/input/
 
-unzip data/input/check_agreement.csv.zip
-unzip data/input/check_correlation.csv.zip
-unzip data/input/sample_submission.csv.zip
-unzip data/input/test.csv.zip
-unzip data/input/training.csv.zip
+files=( "training.csv", "test.csv", "sample_submission.csv", "check_correlation.csv", "check_agreement.csv" )
+
+for file in "${files[@]}"
+do
+   : 
+   if [ ! -e data/input/$file ]
+then
+   wget https://storage.googleapis.com/containers-ftw/flavours-of-physics-ftw/$file.zip -P data/input/
+   unzip data/input/$file.zip
+fi
+
+done
+
 
 %files
 -R analysis/* /code/analysis
@@ -44,18 +47,17 @@ export CONTAINERSFTW_WORK
      mkdir -p /data/mnt     # mounted datasets
 
      # Result directories
-     mkdir -p /result/analysis
-     mkdir -p /result/web
-     mkdir -p /result/pub
+     mkdir -p /code/results/submission
+     mkdir -p /code/results/web
+     mkdir -p /code/results/pub
 
      # Working code directories
      mkdir -p /code/analysis
-     mkdir -p /code/helpers
      mkdir -p /code/tests
 
      # Download evaluation functions
 
-     apt-get update && apt-get install -y python git vim nginx
+     apt-get update && apt-get install -y python git vim nginx wget
      wget https://bootstrap.pypa.io/get-pip.py
      python get-pip.py && rm get-pip.py
      pip install -y numpy scipy pandas scikit-learn ipython
