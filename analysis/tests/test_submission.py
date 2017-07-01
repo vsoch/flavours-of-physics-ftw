@@ -59,7 +59,7 @@ class TestSubmission(TestCase):
         self.assertTrue(isinstance(result,pandas.DataFrame))
 
         print("Validating header fields")
-        required = ['id','prediction']  
+        required = ['prediction']
         for r in required:
             self.assertTrue(r in result.columns.tolist())
 
