@@ -32,7 +32,7 @@ def save_result(result,result_type=None,sep=None,result_base=None):
     '''save a result required for the competition'''
 
     if result_type is None:
-        result_type = "model"
+        result_type = "submission"
 
     if sep is None:
         sep = ','

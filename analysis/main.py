@@ -43,15 +43,15 @@ from metrics import (
     check_auc
 )
 
-bot.info("\nChecking Agreement:")
+bot.info("\nChecking Agreement:\n")
 check_agreement(baseline,variables)
 
+bot.info("Checking Correlation\n:")
 check_correlation(baseline,variables)
-bot.info("\nChecking Correlation:")
 
 train_eval = train[train['min_ANNmuon'] > 0.4]
 
-bot.info("Checking AUC:")
+bot.info("Checking AUC:\n")
 check_auc(baseline,train_eval,variables)
 
 
