@@ -48,11 +48,10 @@ def save_result(result,result_type=None,sep=None,result_base=None):
     return filename
 
 
-def list_results():
+def list_results(result_base=None):
     '''list the results that a complete model must provide'''
 
     bot.info("Submission must include:")
-
 
     if result_base is None:
         result_base = RESULTBASE
@@ -64,7 +63,6 @@ def list_results():
         bot.debug("%s : %s" %(title,path))
 
     return results
-
 
 
 
