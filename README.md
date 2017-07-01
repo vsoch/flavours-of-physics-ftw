@@ -77,6 +77,11 @@ train = load_data(name="training")
 DEBUG Loading training : /data/input/training.csv
 ```
 
+and if you proceed through the rest of the script, you will produce an example result. You can also run the entire example without shelling into the container at all:
+
+```
+singularity run -B data/input:/data/input -B analysis:/code --pwd /code container.ftw
+```
 
 ### Adding Dependencies
 If you add dependencies (another python module, additional data that conforms to competition rules, etc) you should update the Singularity recipe, for example, we have marked in `%post` where you can add installation steps:

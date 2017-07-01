@@ -4,7 +4,7 @@ From: continuumio/anaconda3
 %runscript
 
      # This will generate the scientific result!
-     /opt/conda/bin/python /code/analysis/main.py
+     /opt/conda/bin/python /code/main.py
 
 
 %labels
