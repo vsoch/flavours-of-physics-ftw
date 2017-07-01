@@ -14,7 +14,7 @@ This is a competition orginally [hosted on Kaggle](https://www.kaggle.com/c/flav
 Evaluation for this competition is based on AUC (area under the curve), defined as area under the curve, which broadly gets at the ratio of false positives to false negatives for your model.  In addition to this criteria, the [metrics](metrics.py) file includes multiple checks that physicists do to make sure that results are unbiased.
 
 
-### Build
+## Build
 When you are ready to start your submission, you should fork the repo to your branch, and then clone the fork. For example, if my username on Github was `vsoch`, I would fork and then do:
 
 ```
@@ -29,7 +29,7 @@ singularity create --size 8000 container.ftw
 sudo singularity bootstrap container.ftw Singularity
 ```
 
-### Work in your Container
+## Work in your Container
 To shell into your container, you will want to mount the analysis folder, and the external data. You can do that like this:
 
 ```
@@ -49,18 +49,25 @@ Try creating a file on the host, and you will see it change in the container, or
  - run things from within the container, using the python or ipython located at `/opt/conda/bin`
  - edit code in your editor of choice on your host machine
 
-
-### Code
-
-3. Your data files are located at `/data` and the main script that should run to produce your data in a subfolder of `/code/analysis/results` (for testing input) should be located at `/code/main.py` in the container.
-
+### Environment
 If you want to ever find data or results locations, these have been provided for you via environment variables:
 
  - `CONTAINERSFTW_DATA`: The base folder with data
  - `CONTAINERSFTW_RESULT`: The folder where results are written to
  - `CONTAINERSFTW_WORK`: The folder where your scripts live.
 
-It's definitely a good idea if you are interested to shell around the container to understand where things are located.
+It's definitely a good idea if you are interested to shell around the container to understand where things are located, and test the variables to confirm they are the same:
+
+```
+echo $CONT
+$CONTAINERSFTW_RESULT   $CONTAINERSFTW_DATA     $CONTAINERSFTW_WORK     
+echo $CONTAINERSFTW_DATA
+/data/input
+```
+
+### Code
+You can work from inside the container, or comfortable from the host in the `analysis` folder (mapped to `/code` in the container). Your main work is going to be located at `/code/main.py` in the container, which is `analysis/main.py` on the host. If you open up this file, you can start interactively working in an ipython terminal in the container to test commands.
+
 
 ### Adding Dependencies
 If you add dependencies (another python module, additional data that conforms to competition rules, etc) you should update the Singularity recipe, for example, we have marked in `%post` where you can add installation steps:
