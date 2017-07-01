@@ -70,4 +70,6 @@ result = pandas.DataFrame({'id': test.index})
 # A data frame with columns for id and prediction
 
 result['prediction'] = baseline.predict_proba(test[variables])[:, 1]
-save_result(result)
+filename = save_result(result)
+
+bot.log("Result saved to %s" %filename)

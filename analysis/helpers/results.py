@@ -26,7 +26,7 @@ from .logger import bot
 import pandas
 import os
 
-RESULTBASE = os.environ.get("CONTAINERSFTW_RESULT",'/code/results/submission')
+RESULTBASE = os.environ.get("CONTAINERSFTW_RESULT",'/code/results')
 
 def save_result(result,result_type=None,sep=None,result_base=None):
     '''save a result required for the competition'''
@@ -50,8 +50,6 @@ def save_result(result,result_type=None,sep=None,result_base=None):
 
 def list_results(result_base=None):
     '''list the results that a complete model must provide'''
-
-    bot.info("Submission must include:")
 
     if result_base is None:
         result_base = RESULTBASE
