@@ -66,7 +66,21 @@ echo $CONTAINERSFTW_DATA
 ```
 
 ### Code
-You can work from inside the container, or comfortable from the host in the `analysis` folder (mapped to `/code` in the container). Your main work is going to be located at `/code/main.py` in the container, which is `analysis/main.py` on the host. If you open up this file, you can start interactively working in an ipython terminal in the container to test commands.
+You can work from inside the container, or comfortable from the host in the `analysis` folder (mapped to `/code` in the container). Your main work is going to be located at `/code/main.py` in the container, which is `analysis/main.py` on the host. If you open up this file, you can start interactively working in an ipython terminal in the container to test commands. For example, from `/code` let's try loading the data in `ipython`
+
+```
+from sklearn.ensemble import GradientBoostingClassifier
+from helpers.data import load_data
+from helpers.logger import bot
+
+train = load_data(name="training")
+
+Valid datasets include:
+DEBUG training : /data/input/training.csv
+DEBUG test : /data/input/test.csv
+DEBUG check_agreement : /data/input/check_agreement.csv
+DEBUG check_correlation : /data/input/check_correlation.csv
+```
 
 
 ### Adding Dependencies
