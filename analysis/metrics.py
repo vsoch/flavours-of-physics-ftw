@@ -55,7 +55,7 @@ def check_agreement(model,variables):
 
 def check_correlation(model,variables):
     check_data = load_data('check_correlation')
-    probs = baseline.predict_proba(check_data[variables])[:, 1]
+    probs = model.predict_proba(check_data[variables])[:, 1]
     cvm = compute_cvm(probs, check_data['mass'])
     bot.info('CvM metric %s %s' %(cvm, cvm < 0.002))
     return cvm

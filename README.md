@@ -74,12 +74,7 @@ from helpers.data import load_data
 from helpers.logger import bot
 
 train = load_data(name="training")
-
-Valid datasets include:
-DEBUG training : /data/input/training.csv
-DEBUG test : /data/input/test.csv
-DEBUG check_agreement : /data/input/check_agreement.csv
-DEBUG check_correlation : /data/input/check_correlation.csv
+DEBUG Loading training : /data/input/training.csv
 ```
 
 
