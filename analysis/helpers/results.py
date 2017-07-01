@@ -44,7 +44,7 @@ def save_result(result,result_type=None,sep=None,result_base=None):
         if isinstance(result,pandas.DataFrame):
             result.to_csv(filename,index=False,sep=sep)
         else:
-            bot.error("%s is not a valid result type." %filename)
+            bot.error("%s is not a valid result type." %result_type)
     return filename
 
 
@@ -71,7 +71,6 @@ def get_resultfile(name=None,result_base=None):
     results = list_results(result_base)
 
     if name is not None:
-
         name = os.path.splitext(name)[0].lower()
         if name in results:
             return results[name]
