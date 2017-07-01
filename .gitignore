@@ -1,4 +1,6 @@
 *.img
 __pycache__
+analysis/results/*
 dist
 build
+container.ftw
