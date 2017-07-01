@@ -42,8 +42,8 @@ from metrics import (
     check_auc
 )
 
-check_agreement(model,variables)
-check_correlation(model,variables)
+check_agreement(baseline,variables)
+check_correlation(baseline,variables)
 
 train_eval = train[train['min_ANNmuon'] > 0.4]
 check_auc(model,train_eval)

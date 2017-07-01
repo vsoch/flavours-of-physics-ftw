@@ -36,7 +36,6 @@ DATABASE = os.environ.get("CONTAINERSFTW_DATA",
 def list_data(data_base=None):
     '''list the data, and return lookup to user'''
 
-    bot.info("Valid datasets include:")
     if data_base is None:
         data_base = DATABASE
 
@@ -45,9 +44,6 @@ def list_data(data_base=None):
                       'test':'%s/test.csv' %data_base,
                       'check_agreement': '%s/check_agreement.csv' %data_base,
                       'check_correlation': '%s/check_correlation.csv' %data_base }
-
-    for title,path in valid_datasets.items():
-        bot.debug("%s : %s" %(title,path))
 
     return valid_datasets
 
@@ -61,6 +57,7 @@ def load_data(name=None,index_col=None):
     filename = get_datafile(name=name)
     data = None
     if filename is not None:
+        bot.debug("Loading %s : %s" %(name, filename))
         data = pandas.read_csv(filename, index_col=index_col)
     return data
 

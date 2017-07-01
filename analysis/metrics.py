@@ -41,12 +41,12 @@ def check_agreement(model,variables):
     check_data = load_data('check_agreement')
     probs = model.predict_proba(check_data[variables])[:, 1]
 
-    ks = evaluation.compute_ks(
-                                probs[check_data['signal'].values == 0],
-                                probs[check_data['signal'].values == 1],
-                                check_data[check_data['signal'] == 0]['weight'].values,
-                                check_data[check_data['signal'] == 1]['weight'].values
-                              )
+    ks = compute_ks(
+                     probs[check_data['signal'].values == 0],
+                     probs[check_data['signal'].values == 1],
+                     check_data[check_data['signal'] == 0]['weight'].values,
+                     check_data[check_data['signal'] == 1]['weight'].values
+                   )
 
     bot.info('KS metric %s %s' %(ks, ks < 0.09))
     return ks
@@ -56,7 +56,7 @@ def check_agreement(model,variables):
 def check_correlation(model,variables):
     check_data = load_data('check_correlation')
     probs = baseline.predict_proba(check_data[variables])[:, 1]
-    cvm = evaluation.compute_cvm(probs, check_data['mass'])
+    cvm = compute_cvm(probs, check_data['mass'])
     bot.info('CvM metric %s %s' %(cvm, cvm < 0.002))
     return cvm
 
@@ -64,7 +64,7 @@ def check_correlation(model,variables):
 
 def check_auc(model,train_eval):
     probs = model.predict_proba(train_eval[variables])[:, 1]
-    AUC = evaluation.roc_auc_truncated(train_eval['signal'], probs)
+    AUC = roc_auc_truncated(train_eval['signal'], probs)
     bot.info('AUC %s' %AUC)
     return AUC
 
