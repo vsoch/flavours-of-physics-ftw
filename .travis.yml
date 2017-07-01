@@ -7,6 +7,10 @@ addons:
 
 sudo: true
 
+cache:
+  directories:
+  - $TRAVIS_BUILD_DIR/data/input
+
 os: linux
 
 compiler:
@@ -25,5 +29,5 @@ install:
 
 script:
   - singularity run -B data/input:/data/input -B $TRAVIS_BUILD_DIR/analysis:/code --pwd /code container.ftw
-  - python -m unittest discover -s $TRAVIS_BUILD_DIR/analysis/tests/ -p '[t|T]est*.py'
+  - singularity exec -B data/input:/data/input -B $TRAVIS_BUILD_DIR/analysis:/code --pwd /code container.ftw python -m unittest discover -s /code/tests/ -p '[t|T]est*.py'
 

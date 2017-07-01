@@ -1,5 +1,7 @@
 # Mu Tau Tau Tau ContainersFTW
 
+![img/containers-ftw.png](img/containers-ftw.png)
+
 This is a competition orginally [hosted on Kaggle](https://www.kaggle.com/c/flavours-of-physics/data), reproduced here to encourage containerization of submissions by way of [Singularity](https://singularity.lbl.gov). If you aren't familiar with Singularity, it's a container (like Docker) that can be run securely on HPC architectures.
 
 ## TLDR
