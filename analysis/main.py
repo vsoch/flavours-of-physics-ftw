@@ -3,6 +3,7 @@
 from sklearn.ensemble import GradientBoostingClassifier
 from helpers.data import load_data
 from helpers.logger import bot
+import pandas
 
 #bot.debug("Hello, here is a debug message!")
 #bot.debug("Hello, here is a warning message!")
@@ -42,14 +43,17 @@ from metrics import (
     check_auc
 )
 
-agree = check_agreement(baseline,variables)
-bot.info("Check Agreement Result:" %agree)
-corr = check_correlation(baseline,variables)
-bot.info("Check Correlation Result:" %corr)
+bot.info("\nChecking Agreement:")
+check_agreement(baseline,variables)
+
+check_correlation(baseline,variables)
+bot.info("\nChecking Correlation:")
 
 train_eval = train[train['min_ANNmuon'] > 0.4]
-auc = check_auc(baseline,train_eval,variables)
-bot.info("Check AUC Result:" %auc)
+
+bot.info("Checking AUC:")
+check_auc(baseline,train_eval,variables)
+
 
 
 
@@ -61,5 +65,9 @@ from helpers.results import save_result
 
 test = load_data(name="test")
 result = pandas.DataFrame({'id': test.index})
+
+# Take note of what this result looks like!
+# A data frame with columns for id and prediction
+
 result['prediction'] = baseline.predict_proba(test[variables])[:, 1]
 save_result(result)

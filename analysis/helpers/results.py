@@ -37,7 +37,7 @@ def save_result(result,result_type=None,sep=None,result_base=None):
     if sep is None:
         sep = ','
 
-    filename = get_resultfile(name=name,
+    filename = get_resultfile(name=result_type,
                               result_base=result_base)
 
     if filename is not None:
