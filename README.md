@@ -30,10 +30,10 @@ sudo singularity bootstrap container.ftw Singularity
 ```
 
 ## Work in your Container
-To shell into your container, you will want to mount the analysis folder, and the external data. You can do that like this:
+To shell into your container, you will want to mount the analysis folder, and the external data. You can do that like this. Note that we are making the present working directory (`pwd`) our folder with analysis scripts:
 
 ```
-singularity shell -B data/input:/data/input -B analysis:/code container.ftw
+singularity shell -B data/input:/data/input -B analysis:/code --pwd /code container.ftw
 ```
 
 When you shell into your container, it probably will look the same, but if you do `ls /` you will see a file called `singularity` and root folders `/data` and `/code` that aren't on your host. If you look inside, you will see the data and 

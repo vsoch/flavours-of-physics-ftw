@@ -25,6 +25,7 @@ SOFTWARE.
 # NOTE to competition holders - you can update these functions as appropriate
 # for your competition.
 
+import pandas
 from .logger import bot
 import os
 
