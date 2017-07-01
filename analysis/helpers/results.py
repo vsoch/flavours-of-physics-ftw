@@ -26,7 +26,7 @@ from .logger import bot
 import pandas
 import os
 
-RESULTBASE = os.environ.get("CONTAINERSFTW_RESULT",'/code/analysis/results/submission')
+RESULTBASE = os.environ.get("CONTAINERSFTW_RESULT",'/code/results/submission')
 
 def save_result(result,result_type=None,sep=None,result_base=None):
     '''save a result required for the competition'''
