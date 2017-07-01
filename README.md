@@ -2,6 +2,26 @@
 
 This is a competition orginally [hosted on Kaggle](https://www.kaggle.com/c/flavours-of-physics/data), reproduced here to encourage containerization of submissions by way of [Singularity](https://singularity.lbl.gov). If you aren't familiar with Singularity, it's a container (like Docker) that can be run securely on HPC architectures.
 
+## TLDR
+
+### Clone
+```
+git clone https://www.github.com/vsoch/flavours-of-physics-ftw
+cd flavours-of-physics-ftw
+```
+
+### Build
+```
+singularity create --size 8000 container.ftw 
+sudo singularity bootstrap container.ftw Singularity
+
+### Run
+```
+singularity run -B data/input:/data/input -B analysis:/code --pwd /code container.ftw
+```
+
+Now edit `main.py`, do better, and submit a PR to the contest repo for your entry. Want more details? keep reading!
+
 
 ## Competition Overview
 
@@ -81,7 +101,25 @@ and if you proceed through the rest of the script, you will produce an example r
 
 ```
 singularity run -B data/input:/data/input -B analysis:/code --pwd /code container.ftw
+DEBUG Loading training : /data/input/training.csv
+
+Checking Agreement:
+DEBUG Loading check_agreement : /data/input/check_agreement.csv
+KS metric 0.0681705596239 True
+
+Checking Correlation:
+DEBUG Loading check_correlation : /data/input/check_correlation.csv
+CvM metric 0.000981509354914 True
+
+Checking AUC:
+AUC 0.834346382383
+DEBUG Loading test : /data/input/test.csv
+DEBUG submission : /code/results/submission.csv
+LOG Result saved to /code/results/submission.csv
 ```
+
+The result file is what gets tested in the continuous integration.
+
 
 ### Adding Dependencies
 If you add dependencies (another python module, additional data that conforms to competition rules, etc) you should update the Singularity recipe, for example, we have marked in `%post` where you can add installation steps:
