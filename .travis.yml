@@ -20,7 +20,7 @@ before_install:
   - cd $TRAVIS_BUILD_DIR/
 
 install:
-  - singularity create container.ftw
+  - singularity create --size 8000 container.ftw
   - sudo singularity bootstrap container.ftw Singularity 
 
 script:
