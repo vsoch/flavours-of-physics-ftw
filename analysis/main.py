@@ -42,17 +42,21 @@ from metrics import (
     check_auc
 )
 
-check_agreement(baseline,variables)
-check_correlation(baseline,variables)
+agree = check_agreement(baseline,variables)
+bot.info("Check Agreement Result:" %agree)
+corr = check_correlation(baseline,variables)
+bot.info("Check Correlation Result:" %corr)
 
 train_eval = train[train['min_ANNmuon'] > 0.4]
-check_auc(model,train_eval)
+auc = check_auc(baseline,train_eval,variables)
+bot.info("Check AUC Result:" %auc)
+
 
 
 
 
 # DERIVE RESULT FOR TEST ###############################
-from helpers.result import save_result
+from helpers.results import save_result
 
 
 test = load_data(name="test")

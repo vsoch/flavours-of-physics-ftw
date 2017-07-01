@@ -62,7 +62,7 @@ def check_correlation(model,variables):
 
 
 
-def check_auc(model,train_eval):
+def check_auc(model,train_eval,variables):
     probs = model.predict_proba(train_eval[variables])[:, 1]
     AUC = roc_auc_truncated(train_eval['signal'], probs)
     bot.info('AUC %s' %AUC)
